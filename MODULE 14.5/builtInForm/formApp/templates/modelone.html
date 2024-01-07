@@ -1,0 +1,32 @@
+{% extends 'base.html'%} 
+
+{%block content%}
+<h1 style="text-align: center;">This is model 2</h1>
+    {% if data %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">generic_ip_address_field</th>
+          <th scope="col">float_field</th>
+          <th scope="col">decimal_field</th>
+          <th scope="col">duration_field</th>
+          <th scope="col">file_field</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for st in data %}
+        <tr>
+          <td>{{st.generic_ip_address_field}}</td>
+          <td>{{st.float_field}}</td>
+          <td>{{st.decimal_field}}</td>
+          <td>{{st.file_field}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    {% else %}
+    <h3>No data available to show</h3>
+    {% endif%}
+
+
+{%endblock%}
