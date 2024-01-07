@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+
+{%block content %}
+
+<h1 style="text-align: center;">This is model 1</h1>
+    {% if data %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">big_integer_field</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">boolean_field</th>
+          <th scope="col">comma_separated_field</th>
+          <th scope="col">binary_field</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for st in data %}
+        <tr>
+          <td>{{st.big_integer_field}}</td>
+          <td>{{st.char_field}}</td>
+          <td>{{st.boolean_field}}</td>
+          <td>{{st.comma_separated_field}}</td>
+          <td>{{st.binary_field}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    {% else %}
+    <h3>No data available to show</h3>
+    {% endif%}
+{%endblock%}

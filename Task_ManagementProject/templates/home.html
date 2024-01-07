@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{%block styles %}
+       
+    <style>
+      .navbar{
+        background-color: rgb(56, 183, 188) !important;
+        
+      }
+      .nav-link{
+        color: aliceblue !important;
+      }
+      .navbar-brand{
+        color: red;
+      }
+    </style>
+
+    {% endblock%}
+
+{% block contents %}
+  <div style="display: flex; justify-content: center; align-items: center; gap:10px; border-radius: 5px; margin-top: 19px; flex-wrap: wrap;">
+    {% for task_category in data %}
+    <div class="card"  style="width: 18rem;">
+      <div class="card-body">
+        {% for task_model in task_category.task_model.all %}
+          <h5 class="card-title">Task ID: {{ task_model.id}}</h5>
+          <h5 class="card-title">{{ task_model.task_title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ task_model.Task_assign_date }}</h6>
+          <p class="card-text">{{ task_model.task_description }}</p>
+          <p class="card-text "><button style="background-color: yellow; color: rgb(206, 32, 32); border: 1px solid greenyellow; border-radius:5px;">{{ task_category.category_name}}</button></p>
+          {% if task_model.is_completed %}
+          <h5>Completed.</h5>
+          {%else%} 
+          <a href="{% url 'edit_task' task_model.id %}" class="card-link"><button type="submit" style="background-color: greenyellow; color: rgb(206, 32, 32); border: 1px solid greenyellow; border-radius:5px;">Edit</button></a>
+          <a href="{% url 'delete_task' task_model.id %}" class="card-link"><button type="submit" style="background-color: red; color: rgb(243, 239, 239); border: 1px solid greenyellow; border-radius:5px;">Delete</button></a> 
+          {% endif %}
+        {% endfor %} 
+       
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+{% endblock %}
+
